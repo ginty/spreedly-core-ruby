@@ -25,8 +25,8 @@ module SpreedlyCore
       end
     end
 
-    def self.create(credit_card)
-      verify_post("/payment_methods.xml", :body => {:credit_card => credit_card}) do |response|
+    def self.create(options)
+      verify_post("/payment_methods.xml", :body => options) do |response|
         AddPaymentMethodTransaction.new(response.parsed_response["transaction"])
       end
     end
